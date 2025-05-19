@@ -44,15 +44,25 @@ pipeline {
     }
 
     post {
-        always {
+          always {
             echo 'Pipeline terminé.'
-            // cleanWs()
         }
         success {
             echo 'Build réussi !'
+            emailext (
+                subject: "Build réussi - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Le build a réussi.\n\nConsultez les détails ici : ${env.BUILD_URL}",
+                to: 'hajibaifrah@gmail.com'
+            )
         }
         failure {
             echo 'Build échoué !'
+            emailext (
+                subject: "Build échoué - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Le build a échoué.\n\nConsultez les détails ici : ${env.BUILD_URL}",
+                to: 'hajibaifrah@gmail.com'
+            )
         }
+    }
     }
 }
