@@ -26,7 +26,7 @@ pipeline {
                 // Exécute Maven. 'mvn' est dans le PATH grâce à la directive 'tools'.
                 // Adaptez les goals Maven (ex: 'clean install', 'clean package', 'verify')
                 // Si pom.xml n'est pas à la racine: sh "mvn -f chemin/vers/pom.xml clean package"
-                sh 'mvn clean package' // Ou 'bat "mvn clean package"' pour Windows
+                bat 'mvn clean package' // Ou 'bat "mvn clean package"' pour Windows
                 echo 'Build Maven terminé.'
             }
         }
